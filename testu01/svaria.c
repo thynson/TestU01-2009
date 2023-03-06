@@ -416,10 +416,11 @@ void svaria_SumLogs (unif01_Gen * gen, sres_Chi2 * res,
    }
    sres_InitChi2 (res, N, -1, "svaria_SumLogs");
 
-   strncpy (chaine, "SumLogs sVal1:   chi2 with ", (size_t) LEN1);
-   sprintf (str, "%ld", 2 * n);
-   strncat (chaine, str, (size_t) LEN2);
-   strncat (chaine, " degrees of freedom", (size_t) LEN1);
+   snprintf(chaine, sizeof(chaine), "SumLogs sVal1:   chi2 with %ld degrees of freedom", 2 * n);
+//   strncpy (chaine, "SumLogs sVal1:   chi2 with ", (size_t) LEN1);
+//   sprintf (str, "%ld", 2 * n);
+//   strncat (chaine, str, (size_t) LEN2);
+//   strncat (chaine, " degrees of freedom", (size_t) LEN1);
    statcoll_SetDesc (res->sVal1, chaine);
    res->degFree = 2 * n;
    if (res->degFree < 1) {
@@ -536,10 +537,11 @@ void svaria_WeightDistrib (unif01_Gen * gen, sres_Chi2 * res,
    if (swrite_Classes)
       gofs_WriteClasses (res->NbExp, Loc, res->jmin, res->jmax, NbClasses);
 
-   strncpy (chaine, "WeightDistrib sVal1:   chi2 with ", (size_t) LEN1);
-   sprintf (str, "%ld", NbClasses - 1);
-   strncat (chaine, str, (size_t) LEN2);
-   strncat (chaine, " degrees of freedom", (size_t) LEN1);
+   snprintf(chaine, sizeof(chaine), "WeightDistrib sVal1:   chi2 with %ld degrees of freedom", NbClasses - 1);
+//   strncpy (chaine, "WeightDistrib sVal1:   chi2 with ", (size_t) LEN1);
+//   sprintf (str, "%ld", NbClasses - 1);
+//   strncat (chaine, str, (size_t) LEN2);
+//   strncat (chaine, " degrees of freedom", (size_t) LEN1);
    statcoll_SetDesc (res->sVal1, chaine);
    res->degFree = NbClasses - 1;
    if (res->degFree < 1) {
@@ -679,10 +681,11 @@ static int svaria_CollisionArgMax_00 (unif01_Gen *gen, sres_Chi2 *res,
    if (swrite_Classes)
       gofs_WriteClasses (res->NbExp, Loc, res->jmin, res->jmax, NbClasses);
 
-   strncpy (chaine, "CollisionArgMax sVal1:   chi2 with ", (size_t) LEN1);
-   sprintf (str, "%ld", NbClasses - 1);
-   strncat (chaine, str, (size_t) LEN2);
-   strncat (chaine, " degrees of freedom", (size_t) LEN1);
+   snprintf(chaine, sizeof (chaine), "CollisionArgMax sVal1:   chi2 with %ld degrees of freedom", NbClasses - 1);
+//   strncpy (chaine, "CollisionArgMax sVal1:   chi2 with ", (size_t) LEN1);
+//   sprintf (str, "%ld", NbClasses - 1);
+//   strncat (chaine, str, (size_t) LEN2);
+//   strncat (chaine, " degrees of freedom", (size_t) LEN1);
    statcoll_SetDesc (res->sVal1, chaine);
    res->degFree = NbClasses - 1;
    if (res->degFree < 1) {
@@ -887,10 +890,11 @@ void svaria_SumCollector (unif01_Gen * gen, sres_Chi2 * res,
    if (swrite_Classes)
       gofs_WriteClasses (res->NbExp, Loc, res->jmin, res->jmax, NbClasses);
 
-   strncpy (chaine, "SumCollector sVal1:   chi2 with ", (size_t) LEN1);
-   sprintf (str, "%ld", NbClasses - 1);
-   strncat (chaine, str, (size_t) LEN2);
-   strncat (chaine, " degrees of freedom", (size_t) LEN1);
+   snprintf(chaine, sizeof(chaine), "SumCollector sVal1:   chi2 with %ld degrees of freedom", NbClasses - 1);
+//   strncpy (chaine, "SumCollector sVal1:   chi2 with ", (size_t) LEN1);
+//   sprintf (str, "%ld", NbClasses - 1);
+//   strncat (chaine, str, (size_t) LEN2);
+//   strncat (chaine, " degrees of freedom", (size_t) LEN1);
    statcoll_SetDesc (res->sVal1, chaine);
    res->degFree = NbClasses - 1;
    if (res->degFree < 1) {
@@ -1054,7 +1058,7 @@ static void WriteDataAppear (unif01_Gen * gen,
       printf ("\n\n");
    unif01_WriteNameGen (gen);
    printf ("\n");
-   if (swrite_ExperimentName && strcmp (swrite_ExperimentName, "")) {
+   if (strcmp (swrite_ExperimentName, "")) {
       printf ("%s", swrite_ExperimentName);
       printf (":\n\n");
    }

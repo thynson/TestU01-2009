@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.10)
+project(testu01_root)
+add_subdirectory(config)
+add_subdirectory(tcode)
+add_subdirectory(mylib)
+add_subdirectory(probdist)
+add_subdirectory(testu01)

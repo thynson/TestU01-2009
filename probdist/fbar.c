@@ -17,6 +17,7 @@
 
 #include "fbar.h"
 #include "fdist.h"
+#include <strings.h>
 
 #include "num.h"
 #include "num2.h"

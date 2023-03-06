@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef HAVE_WINDOWS_H
+#ifdef _WIN32
 
 #include <windows.h>
 
@@ -64,29 +64,7 @@ static void Heure (unsigned long *tsec, unsigned long *tusec) {
 }
 
 
-#elif defined(USE_ANSI_CLOCK)
-/* ANSI C timer */
-
-static void Heure (
-   unsigned long *tsec,            /* Seconds */
-   unsigned long *tmicrosec        /* Micro-seconds */
-   )
-/* 
- * Function returning the CPU time used by a program since it was
- * started. This function is ANSI C compliant.
- */
-{
-   clock_t t;
-   double y;
-
-   t = clock ();
-   y = ((double) t) / CLOCKS_PER_SEC;
-   *tsec = y;
-   *tmicrosec = (y - *tsec) * 1000000;
-}
-
-
-#else
+#elif defined(__unix__) || defined(__APPLE__)
 /* POSIX timer */
 
 #include <sys/times.h>
@@ -117,6 +95,26 @@ static void Heure (unsigned long *tsec, unsigned long *tusec)
    *tusec = (*tusec % TICKS) * 1000000 / TICKS;
 }
 
+#else
+/* Fallback to ANSI C timer */
+
+static void Heure (
+    unsigned long *tsec,            /* Seconds */
+    unsigned long *tmicrosec        /* Micro-seconds */
+)
+/*
+ * Function returning the CPU time used by a program since it was
+ * started. This function is ANSI C compliant.
+ */
+{
+  clock_t t;
+  double y;
+
+  t = clock ();
+  y = ((double) t) / CLOCKS_PER_SEC;
+  *tsec = y;
+  *tmicrosec = (y - *tsec) * 1000000;
+}
 #endif
 
 
